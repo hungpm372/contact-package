@@ -21,7 +21,7 @@ class ContactController extends Controller
     {
         $contact = new Contact($request->all());
         $contact->save();
-        Mail::to('hungpm372@gmail.com')->send(new ContactMailable($request->message));
+        Mail::to(config('contact.send_email_to'))->send(new ContactMailable($request->message));
         return redirect(route('contact'));
     }
 }
